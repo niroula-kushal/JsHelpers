@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Github api</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Resource</td>
+                <td>URI</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+    <style>
+    table {
+        border-collapse: collapse;
+    } 
+
+    td,th {
+        padding : 10px;
+        border : 1px solid grey;
+    }
+    </style>
+    <script src="../src/fetch.helper.js"></script>
+    <script src="../src/element-selector.helper.js"></script>
+    <script>
+        const tbodyElm = __("#tbody");
+        fetch("https://api.github.com/")
+        .then(handleFetchStatus)
+        .then(res => {
+            const docFragment = document.createDocumentFragment();
+            for(text in res) {
+                const url = res[text];
+                const td1 = document.createElement("td");
+                td1.textContent = text;
+                const td2 = document.createElement("td");
+                td2.textContent = url;
+                const tr = document.createElement("tr");
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                docFragment.appendChild(tr);
+            }
+            tbodyElm.appendChild(docFragment);
+        });
+    </script>
+</body>
+</html>
