@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Preview Example</title>
+    <style>
+        .img {
+            height : 400px;
+            width : 400px;
+            border : 2px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <label for="image">Choose an image : </label> <input type="file" id="image" accept=".png,.jpg"
+        class="to-display"
+        data-display-in = "disp-here"
+    >
+
+    <label for="image-watch">Choose an image (watch) : </label>
+    <input type="file" class="watched" accept=".png,.jpg" data-display-in="disp-here">
+    <img src="" alt="Choosen image" class="img" id="disp-here">
+    <script src="../src/element-selector.helper.js"></script>
+    <script src="../src/image-preview.helper.js"></script>
+    <script>
+        IMAGE_PREVIEW_HELPER.Watch(".watched");
+    </script>
+</body>
+</html>
