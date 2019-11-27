@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Copy to clipboard</title>        
+    </head>
+    <body>
+        <h3 class="copy-to-clipboard">Click to copy</h3>
+
+        <h3 class="watch-and-copy">Click to copy using watch method</h3>
+        <br/>
+        Paste here :
+        <textarea name="" id="" cols="30" rows="3"></textarea>
+        <script src="../src/element-selector.helper.js"></script>
+        <script src="../src/copy-to-clipboard.helper.js"></script>
+        <script>
+            CLIPBOARD_HELPER.Watch(".watch-and-copy");
+        </script>
+    </body>
+</html>
