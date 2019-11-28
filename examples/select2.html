@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <select name="" id="country-select" style="width : 30%">
+    </select>
+    <select name="" id="new-select" style="width : 30%">
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="X">X</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="Z">Z</option>
+        <option value="F">F</option>
+        <option value="E">E</option>
+        <option value="T">T</option>
+    </select>
+    <script src="../src/select.helper.js"></script>
+    <script src="../src/fetch.helper.js"></script>
+    <script src="../src/select2.option.sorter.helper.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    <script>
+        const selectElm = document.querySelector("#country-select");
+        $(selectElm).select2({sorter: select2OptionSorter});
+        $("#new-select").select2({sorter: select2OptionSorter});
+        fetch("https://restcountries.eu/rest/v2/all")
+            .then(handleFetchStatus)
+            .then(res => {
+                const options = res.map(country => {
+                    return {
+                        text: country.name,
+                        value: country.name,
+                        selected: false
+                    };
+                });
+                SELECT_HELPER.AddOptions(selectElm, options);
+                selectElm.dispatchEvent(new Event('change'));
+            });
+    </script>
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>
