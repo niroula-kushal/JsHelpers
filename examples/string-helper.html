@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>String Helper</title>
+</head>
+<body>
+<div class="textarea" contenteditable="true">
+
+</div>
+
+<h4>Replace : <input type="text" id="needle"> with <input type="text" id="replacer"> <button id="replace"> Replace </button></h4>
+<style>
+    input {
+        padding : 2px;
+        width : 100px;
+    }
+    h4 {
+        text-align: center;
+        margin : 0 auto;
+    }
+    .textarea {
+        background : rgba(0,0,0, .6);
+        padding : 10px;
+        width : 30%;
+        margin : 10px auto;
+        height: 30vh;
+        color: white;
+    }
+</style>
+<script src="../src/string-helper.js"></script>
+<script src="../src/element-selector.helper.js"></script>
+<script>
+    const needleElm = __("#needle");
+    const replacerElm = __("#replacer");
+    const replaceBtn = __("#replace");
+    const textarea = __(".textarea");
+
+    replaceBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const replaced = REHMAT_STRING_HELPER.ReplaceAll(textarea.textContent, needleElm.value, replacerElm.value);
+        textarea.textContent = replaced;
+    });
+</script>
+</body>
+</html>
